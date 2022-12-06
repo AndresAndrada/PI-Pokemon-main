@@ -14,23 +14,23 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false, // no sea null
     },
-    vida: {
+    life: {
       type: DataTypes.STRING,
       // unique: true // un unico valor,
     },
-    ataque: {
+    attack: {
       type: DataTypes.STRING,
     },
-    defensa: {
+    defending: {
       type: DataTypes.STRING,
     },
-    velocidad: {
+    speed: {
       type: DataTypes.INTEGER
     },
-    altura: {
+    height: {
       type: DataTypes.INTEGER
     },
-    peso: {
+    weight: {
       type: DataTypes.INTEGER
     },
     
