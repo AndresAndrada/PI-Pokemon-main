@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.UUID,
       allowNull: false,
-      default: DataTypes.UUIDV4, // designa un id que lo diferencia de la api
+      defaultValue: DataTypes.UUIDV4, // designa un id que lo diferencia de la api
       primaryKey: true // unico id
     },
     name: {
@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       primaryKey: true,
       allowNull: false,
-      default: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4
     },
     name: {
       type: DataTypes.STRING,

@@ -1,11 +1,13 @@
 const { Router } = require('express');
-const { getAllApi, findPokeId } = require('../controllers/poke.controller');
+const { getAllApi, findPokeId, addPoke } = require('../controllers/poke.controller');
 
 
 const pokeRouter = Router();
-
+// GET
 pokeRouter.get('/', getAllApi);
 pokeRouter.get('/:id', findPokeId);
-// pokeRouter.get('/pokemons', findPokeName);
+
+// POST
+pokeRouter.post('/pokemon', addPoke)
 
 module.exports = pokeRouter

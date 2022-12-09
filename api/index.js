@@ -21,7 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => { // force => elimina toda la tabla y crea una nueva || alter: true modifica la tabla
+conn.sync({ force: false }).then(() => { // force => elimina toda la tabla y crea una nueva || alter: true modifica la tabla
   server.listen(3001, () => {
     console.log('listening at 3001'); // eslint-disable-line no-console
   });

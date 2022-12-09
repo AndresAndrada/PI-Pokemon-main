@@ -29,13 +29,15 @@ const getAllApi = async (req, res, next) => {
         } else { 
             const pokeBd = await Pokemon.findAll()
             // console.log(pokeBd, 'db')
-            const searchApi = pokemon.filter(pk => pk.name === name);
-            const searchBD = pokeBd.filter(pk => pk.name === name);
+            const searchApi = pokemon.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
+            const searchBD = pokeBd.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
+
+// TRAE EL POKEMEMON FILTRADO POR NAME
             if(searchApi.length < 1){
-                // res.send('ENTRE A QUERY BD');
-                console.log(searchBD, 'QQQQ')
-                if (searchBD) {
-                    var pokeDB = searchBD.map(pk => {
+                if (searchBD.length > 0) {
+                    console.log('ENTRE A QUERY BD');
+                    // res.send('ENTRE A QUERY BD')
+                    var pokemonBD = searchBD.map(pk => {
                         return {
                             id: pk.id,
                             name: pk.name,
@@ -46,23 +48,22 @@ const getAllApi = async (req, res, next) => {
                             weight: pk.weight
                         }
                     })
-                    res.send(pokeBd);
-
+                    res.send(pokemonBD);
+                } else {
+                    res.json({ message: 'Pokemon no existente' })
                 }
-                
-            } else {
-
-
-                // res.send('ENTRE A QUERY API')
+            } else if(searchApi.length >0) {
+                console.log('ENTRE API')
                 const resultado = searchApi.map(async pk => await axiosUrl(pk.url));
                 const promise = await Promise.all(resultado);
                 res.json(promise);
-            }
+            } 
         }
     } catch (error) {
+        console.log('ERROOOOR')
         next(error)
-    }
-} 
+    };
+};
 
 // Destructurin de obj que se le pasa por parametros
 const FindPokeId = (obj) => {
@@ -88,30 +89,32 @@ const findPokeId = async (req, res, next) => {
         // console.log(todoPoke)
         res.json(resultado) 
     } catch (error) {
+        console.log('ERROOOOR')
         next(error);
     };
 };
 
-// const findPokeName = async (req, res, next) => {
-//     try {
-//         const { name } = req.query;
-//         const pedido = await axios.get(`https://pokeapi.co/api/v2/pokemons/pokemons?name=${name}`)
-//         // const pokeBd = await Pokemon.findall()
-//         if(pedido) {
-
-//             const todoPoke = pedido.data;
-//         } else {
-//             return 'NOOOOO'
-//         }
-
-
-//         res.json(todoPoke.results[0].name)
-//     } catch (error) {
-//         next(error);
-//     }
-// };
+// CREA UN PERSONAJE EN BD
+const addPoke = async (req, res,next) => {
+    const { pokemon } = req.body;
+    console.log(req.body);
+    try {
+        if(pokemon) {
+            let pokeNew = await Pokemon.create(pokemon)
+            // pokeNew ? res.json({ pokeNew }) : res.json({ message: 'No se creo' })
+            return res.json(pokeNew) 
+        } else {
+            return res.json({ message: 'Debe completar el formulario correctamente'})
+        }
+        // res.json({ message: 'POST' })
+    } catch (error) {
+        console.log('ERROOOOR');
+        next(error);
+    };
+};
 
 module.exports = {
     getAllApi,
     findPokeId,
+    addPoke
 };
