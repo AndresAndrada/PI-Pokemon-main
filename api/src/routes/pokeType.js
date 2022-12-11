@@ -1,9 +1,11 @@
+const { default: axios } = require('axios');
 const {Router} = require('express');
+const { findTypePoke } = require('../controllers/type.controller');
+
+
 
 const pokeType = Router();
 
-pokeType.get('/', (req, res) => {
-    res.send('Estoy en type')
-});
+pokeType.get('/', findTypePoke);
 
 module.exports = pokeType;

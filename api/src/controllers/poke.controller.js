@@ -7,6 +7,7 @@ const { Pokemon, Type } = require('../db')
 const axiosUrl = async (url) => {
     const pokemon = await axios(url); 
     const respuesta = pokemon.data; // trae la data de la promesa
+    // console.log(respuesta, 'FUN AXIOSURL')
     const { sprites, name, types } = respuesta; // destructurin de esa respuesta
     return { 
         name: name,
@@ -70,7 +71,7 @@ const getAllApi = async (req, res, next) => {
 // ruta "findPokeId" filtra por id => MODULARIZADA
 
 // CREA UN PERSONAJE EN BD
-const addPoke = async (req, res,next) => {
+const addPoke = async (req, res, next) => {
     const { pokemon } = req.body;
     // console.log(pokemon.type);
     // console.log(pokemon, 'BODY')
@@ -80,7 +81,7 @@ const addPoke = async (req, res,next) => {
             let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type });
             // console.log(pokeNew, 'NEW')
             let  typePoke = await Type.create({name: type }) // NO FUNCIONA => investigar las sintaxis
-            console.log(typePoke, 'TYPE');
+            // console.log(typePoke, 'TYPE');
             pokeNew.addType(typePoke);
             res.json({message: 'Creado correctamente'});
         } else {

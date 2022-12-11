@@ -33,13 +33,16 @@ module.exports = (sequelize) => {
     weight: { // peso
       type: DataTypes.INTEGER
     },
-    
+    sprites: {
+      type: DataTypes.STRING, 
+      allowNull: true
+    }    
   },
   {
     timestamps: false,
   });
 
-  sequelize.define('tipo', {
+  sequelize.define('type', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
