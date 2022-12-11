@@ -1,6 +1,8 @@
 const { Router } = require('express');
-const { getAllApi, addPoke } = require('../controllers/poke.controller');
-const { findPokeId } = require('../controllers/findPokeId')
+const { getAllApi } = require('../controllers/getAll.findName');
+const { findPokeId } = require('../controllers/findPokeId');
+const { addPoke } = require('../controllers/addPoke');
+
 
 const pokeRouter = Router();
 // GET
