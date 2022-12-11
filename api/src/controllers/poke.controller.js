@@ -1,6 +1,6 @@
 // CONTORLADORES DE LA RUTA /pokemons
 const axios = require('axios');
-const { Pokemon } = require('../db')
+const { Pokemon, Type } = require('../db')
 
 
 // TRAE LOS ELEMENTOS DE LA URL DE RESULTS
@@ -60,61 +60,40 @@ const getAllApi = async (req, res, next) => {
             } 
         }
     } catch (error) {
-        console.log('ERROOOOR')
+        console.log('ERROOOOR GET POKE')
         next(error)
     };
 };
 
-// Destructurin de obj que se le pasa por parametros
-const FindPokeId = (obj) => {
-    const { id, name, sprites, types, height, stats } =  obj; 
-    return {
-        id,
-        name,
-        sprites: sprites.front_default,
-        types: types[0].type.name,
-        height,
-        stats,
-    };
-};
+// funcion "FindPokeId" destructurin del obj => MODULARIZADA
 
-// TRAE EL DETALLE DE POKEMON POR MEDIO DEL ID
-const findPokeId = async (req, res, next) => {
-    try {
-        const { id } = req.params;
-        const pedido = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        const todoPoke = pedido.data;
-        // console.log(todoPoke.id, 'ENTRE') // ENTROOOO
-        const resultado = FindPokeId(todoPoke) // trae las propiedades necesarias
-        // console.log(todoPoke)
-        res.json(resultado) 
-    } catch (error) {
-        console.log('ERROOOOR')
-        next(error);
-    };
-};
+// ruta "findPokeId" filtra por id => MODULARIZADA
 
 // CREA UN PERSONAJE EN BD
 const addPoke = async (req, res,next) => {
     const { pokemon } = req.body;
-    console.log(req.body);
+    // console.log(pokemon.type);
+    // console.log(pokemon, 'BODY')
     try {
-        if(pokemon) {
-            let pokeNew = await Pokemon.create(pokemon)
-            // pokeNew ? res.json({ pokeNew }) : res.json({ message: 'No se creo' })
-            return res.json(pokeNew) 
+        if(pokemon.name) {
+            const { name, life, attack, defending, speed, height, weight, type } = pokemon
+            let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type });
+            // console.log(pokeNew, 'NEW')
+            let  typePoke = await Type.create({name: type }) // NO FUNCIONA => investigar las sintaxis
+            console.log(typePoke, 'TYPE');
+            pokeNew.addType(typePoke);
+            res.json({message: 'Creado correctamente'});
         } else {
-            return res.json({ message: 'Debe completar el formulario correctamente'})
-        }
+            res.json({ message: 'Debe completar el formulario correcta mente'});
+        }; 
         // res.json({ message: 'POST' })
     } catch (error) {
-        console.log('ERROOOOR');
+        console.log('ERROOOOR POST');
         next(error);
     };
 };
 
 module.exports = {
     getAllApi,
-    findPokeId,
     addPoke
 };
