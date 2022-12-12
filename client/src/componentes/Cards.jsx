@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import Pokemon from "./Pokemon";
+import Pokemon from "./Pokemon";
 import { useDispatch, useSelector } from "react-redux";
 import { getApi } from "../redux/action";
 
@@ -17,13 +17,16 @@ export default function Cards() {
     return (
         <div>
             <h2>Pokemons</h2>
-            {/* { state.map( p => 
-                <Pokemon 
-                sprites={ p.sprites }
-                name={ p.name }
-                types={ p.types }
-                 />)
-            } */}
+            { state && state.map( p => {
+                return (
+                    <Pokemon 
+                    key={ p.name}
+                    sprites={ p.sprites }
+                    name={ p.name }
+                    types={ p.types }
+                    />
+                ) })
+            }
         </div>
     );
 };

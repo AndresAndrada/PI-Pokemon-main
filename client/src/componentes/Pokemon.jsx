@@ -1,8 +1,9 @@
 import React from "react";
 
 export default function Pokemon({ name, sprites, types }) { 
+    return (
     <div>
-        <h1>ESTOY</h1>
+        <h1>Pokemon</h1>
         <div>
             <img src={ sprites } alt="imagenPokemon" />
         </div>
@@ -13,4 +14,5 @@ export default function Pokemon({ name, sprites, types }) {
             <h5>{ types }</h5>
         </div>
     </div>
+    )
 }
