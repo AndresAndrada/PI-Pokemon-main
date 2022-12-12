@@ -25,14 +25,14 @@ const { conn } = require('./src/db.js');
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => { // force => elimina toda la tabla y crea una nueva || alter: true modifica la tabla
   server.listen(3001, async () => {
-    const pedido = await axios.get('https://pokeapi.co/api/v2/type');
+    const pedido = await axios.get('https://pokeapi.co/api/v2/type'); // trae los tipos de la api apenas levanta el servidor
         const type = pedido.data.results.map(t => {
           return {
             name: t.name
           }
-        });
-        console.log(type);
-        await Type.bulkCreate(type);
+        }); // devuelve c/name de tipo
+        // console.log(type);
+        await Type.bulkCreate(type); // crea los tipos en la DB
         // type.map(async t => await Type.bulkCreate({ name: t.name }));
     console.log('listening at 3001'); // eslint-disable-line no-console
   });

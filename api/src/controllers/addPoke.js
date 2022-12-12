@@ -6,13 +6,19 @@ const addPoke = async (req, res, next) => {
     // console.log(pokemon, 'BODY')
     try {
         if(pokemon.name) {
-            const { name, life, attack, defending, speed, height, weight, type } = pokemon
-            let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type });
-            // console.log(pokeNew, 'NEW')
-            let  typePoke = await Type.findAll({ where: { name: type } }) // NO FUNCIONA => investigar las sintaxis
-            // console.log(typePoke, 'TYPE');
-            pokeNew.addType(typePoke);
-            res.json({message: 'Creado correctamente'});
+            const pokeDB = await Pokemon.findAll({ where: { name: pokemon.name }})
+            // console.log(typeof pokeDB, pokeDB, 'NAME REPETIDO');
+            if (!pokeDB.length) {
+                const { name, life, attack, defending, speed, height, weight, type, sprites } = pokemon
+                let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type, sprites });
+                // console.log(pokeNew, 'NEW')
+                let  typePoke = await Type.findAll({ where: { name: type } }) // NO FUNCIONA => investigar las sintaxis
+                // console.log(typePoke, 'TYPE');
+                pokeNew.addType(typePoke);
+                res.json({message: 'Creado correctamente'});
+            } else {
+                res.json({ message: 'El pokemon con ese nombre ya existe'})
+            }
         } else {
             res.json({ message: 'Debe completar el formulario correcta mente'});
         }; 

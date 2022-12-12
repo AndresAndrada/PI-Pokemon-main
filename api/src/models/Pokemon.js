@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
     },
     sprites: {
       type: DataTypes.STRING, 
-      allowNull: true
+      allowNull: false
     }    
   },
   {

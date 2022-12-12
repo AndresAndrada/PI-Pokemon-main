@@ -15,10 +15,8 @@ const { Pokemon, Type } = require('../db')
 
 const findTypePoke = async (req, res, next) => {
     try {
-        
-        
-        res.json('type');
-
+        const type = await Type.findAll() // busca todos los tipos a la DB
+        res.json(type);
     } catch (error) {
         console.log('ERROOOOR GET TYPE')
         // res.json({ error: error.message })
