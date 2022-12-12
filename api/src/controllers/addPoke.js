@@ -9,7 +9,7 @@ const addPoke = async (req, res, next) => {
             const { name, life, attack, defending, speed, height, weight, type } = pokemon
             let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type });
             // console.log(pokeNew, 'NEW')
-            let  typePoke = await Type.create({name: type }) // NO FUNCIONA => investigar las sintaxis
+            let  typePoke = await Type.findAll({ where: { name: type } }) // NO FUNCIONA => investigar las sintaxis
             // console.log(typePoke, 'TYPE');
             pokeNew.addType(typePoke);
             res.json({message: 'Creado correctamente'});

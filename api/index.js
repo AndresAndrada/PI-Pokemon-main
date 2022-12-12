@@ -1,3 +1,5 @@
+const axios = require('axios')
+const { Type } = require('./src/db')
 //                       _oo0oo_
 //                      o8888888o
 //                      88" . "88
@@ -22,7 +24,16 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => { // force => elimina toda la tabla y crea una nueva || alter: true modifica la tabla
-  server.listen(3001, () => {
+  server.listen(3001, async () => {
+    const pedido = await axios.get('https://pokeapi.co/api/v2/type');
+        const type = pedido.data.results.map(t => {
+          return {
+            name: t.name
+          }
+        });
+        console.log(type);
+        await Type.bulkCreate(type);
+        // type.map(async t => await Type.bulkCreate({ name: t.name }));
     console.log('listening at 3001'); // eslint-disable-line no-console
   });
 });
