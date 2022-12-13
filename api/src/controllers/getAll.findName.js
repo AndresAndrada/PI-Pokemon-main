@@ -21,12 +21,16 @@ const axiosUrl = async (url) => {
 // TRAEMOS TODOS LOS POKEMON DE LA API
 const getAllApi = async (req, res, next) => {
     try {
-        const pedido = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40')
+        const pedido = await axios.get('https://pokeapi.co/api/v2/pokemon');
+        console.log(pedido, 'PEDIDO');
         const pokemon = pedido.data.results;
+        const list2 = await axios.get(pedido.data.next);
+        const listCompl = [...pokemon, ...list2.data.results];
+        // console.log(listCompl, 'LISTA COMPLE')
         const { name } = req.query;
         if(!name) {
             // res.send('hola')
-            const respuesta = pokemon.map(async pk => await axiosUrl(pk.url)) // a c/url se le hace un axios
+            const respuesta = listCompl.map(async pk => await axiosUrl(pk.url)) // a c/url se le hace un axios
             const promise = await Promise.all(respuesta); // espera todas las promesas
             // console.log(promise, 'POMISE')
             const resultado = promise.map(pk => {
@@ -40,7 +44,7 @@ const getAllApi = async (req, res, next) => {
         } else { 
             const pokeBd = await Pokemon.findAll()
             // console.log(pokeBd, 'db')
-            const searchApi = pokemon.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
+            const searchApi = listCompl.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
             const searchBD = pokeBd.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
 
 // TRAE EL POKEMEMON FILTRADO POR NAME
