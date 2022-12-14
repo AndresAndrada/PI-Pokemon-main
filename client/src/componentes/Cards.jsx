@@ -16,10 +16,10 @@ export default function Cards() {
 
     return (
         <div>
-            <h2>Pokemons</h2>
+            <h2>Home</h2>
             { state && state.map( p => {
                 return (
-                    <Pokemon 
+                    <Pokemon
                     key={ p.name}
                     sprites={ p.sprites }
                     name={ p.name }
