@@ -3,10 +3,10 @@ import Pokemon from "./Pokemon";
 import { useDispatch, useSelector } from "react-redux";
 import { getApi } from "../redux/action";
 
-export default function Cards() {
+function Cards() {
     const dispatch = useDispatch(); // envia la info al reducer
     
-    useEffect(() => {
+    useEffect(() => {    // se ejecuta la accion cuando se monta el componente  
         dispatch(getApi());
     }, [dispatch]);
     
@@ -17,6 +17,7 @@ export default function Cards() {
     return (
         <div>
             <h2>Home</h2>
+            <h3>Pokemons</h3>
             { state && state.map( p => {
                 return (
                     <Pokemon
@@ -25,8 +26,10 @@ export default function Cards() {
                     name={ p.name }
                     types={ p.types }
                     />
-                ) })
-            }
+                )
+            })}
         </div>
     );
 };
+
+export default Cards

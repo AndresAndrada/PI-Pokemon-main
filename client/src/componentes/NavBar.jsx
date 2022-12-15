@@ -8,9 +8,9 @@ const NavBar = () => {
           <li><Link to='/home'>Home</Link></li>
           <li><Link to='/home/create'>Create a Pokemon</Link></li>
           <li><Link to='/home/about'>About</Link></li>
-          <form onSubmit=''>
+          <form >
             {/* <label htmlFor="">Search</label> */}
-            <input type="text" name="name" placeholder="Search Pokemon..." onChange='' />
+            <input type="text" name="name" placeholder="Search Pokemon..." />
             <input type="submit" value='Search' />
           </form>
         </ul>
