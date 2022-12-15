@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Pokemon({ id, name, sprites, types }) {
-  console.log(id, 'ID POKE') 
+  // console.log(id, 'ID POKE') 
   return (
   <div>
     <div>

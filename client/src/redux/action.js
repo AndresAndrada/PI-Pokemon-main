@@ -10,7 +10,7 @@ export const CLEAR_POKE = 'CLEAR_POKE';
 export const getApi = () => {
     return async function pedido(dispatch) {
         let aux = await axios.get('http://localhost:3001/pokemons');
-        console.log(aux.data, 'aux get')
+        // console.log(aux.data, 'aux get')
         return dispatch({
             type: GET_API,
             payload: aux.data

@@ -10,7 +10,7 @@ const Detail = (props) => {
     dispatch(findId(id))
   }, [dispatch, id]);
   const state = useSelector(state => state.pokeDetail);
-  console.log(state, 'state DET');
+  // console.log(state, 'state DET');
   return (
     <div>
       <h1>Detail the Pokemon</h1>
