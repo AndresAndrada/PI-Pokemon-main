@@ -1,7 +1,7 @@
-import { CLEAR_POKE, FIND_ID, FIND_NAME, GET_API } from './action'
+import { FIND_ID, FIND_NAME, GET_API } from './action'
 
 const initialState = {
-    pokemons: [],
+    pokemons: {},
     type: [],
     pokeDetail: {}
 }
@@ -20,10 +20,10 @@ export default function rootReducer(state = initialState, action) {
             ...state,
             pokeDetail: action.payload
         };
-        case CLEAR_POKE: return {
-            ...state,
-            pokeDetail: {} 
-        };
+        // case CLEAR_POKE: return {
+        //     ...state,
+        //     pokeDetail: {} 
+        // };
         default: return state;
     }
 }

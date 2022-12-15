@@ -29,11 +29,11 @@ export const findName = (name) => {
     }
 }
 
-export const clearPoke = () => {
-    return {
-        type: CLEAR_POKE
-    }
-} 
+// export const clearPoke = () => {
+//     return {
+//         type: CLEAR_POKE
+//     }
+// } 
 
 export const findId = (id) => {
     return async function pedido(dispatch) {
@@ -42,6 +42,17 @@ export const findId = (id) => {
         return dispatch({
             type: FIND_ID,
             payload: aux.data
+        });
+    };
+};
+
+export const createPoke = (pokemon) => {
+    return async function pedido(dispatch) {
+        console.log(typeof pokemon, pokemon, 'aux create');
+        let aux = await axios.post(`http://localhost:3001/pokemons/${pokemon}`);
+        return dispatch({
+            type: CREATE_POKE,
+            payload: aux
         })
-    }
-}
+    };
+};
