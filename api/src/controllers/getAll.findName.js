@@ -8,8 +8,9 @@ const axiosUrl = async (url) => {
     const pokemon = await axios(url); 
     const respuesta = pokemon.data; // trae la data de la promesa
     // console.log(respuesta, 'FUN AXIOSURL')
-    const { sprites, name, types, height, weight } = respuesta; // destructurin de esa respuesta
+    const { sprites, name, types, height, weight, id} = respuesta; // destructurin de esa respuesta
     return { 
+        id,
         name: name,
         sprites: sprites.front_default,
         types: types[0].type.name,
@@ -22,7 +23,7 @@ const axiosUrl = async (url) => {
 const getAllApi = async (req, res, next) => {
     try {
         const pedido = await axios.get('https://pokeapi.co/api/v2/pokemon');
-        console.log(pedido, 'PEDIDO');
+        // console.log(pedido, 'PEDIDO');
         const pokemon = pedido.data.results;
         const list2 = await axios.get(pedido.data.next);
         const listCompl = [...pokemon, ...list2.data.results];
@@ -35,6 +36,7 @@ const getAllApi = async (req, res, next) => {
             // console.log(promise, 'POMISE')
             const resultado = promise.map(pk => {
                 return {
+                    id: pk.id,
                     name: pk.name,
                     sprites: pk.sprites,
                     types: pk.types
@@ -43,14 +45,14 @@ const getAllApi = async (req, res, next) => {
             res.send(resultado) 
         } else { 
             const pokeBd = await Pokemon.findAll()
-            // console.log(pokeBd, 'db')
+            // console.log(pokeBd, 'DB')
             const searchApi = listCompl.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
             const searchBD = pokeBd.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
 
 // TRAE EL POKEMEMON FILTRADO POR NAME
             if(!searchApi.length){
                 if (searchBD.length > 0) {
-                    console.log('ENTRE A QUERY BD');
+                    console.log('ENTRE BD');
                     var pokemonBD = searchBD.map(pk => {
                         return {
                             id: pk.id,
@@ -68,7 +70,7 @@ const getAllApi = async (req, res, next) => {
                     res.json({ message: 'Pokemon no existente' })
                 }
             } else if(searchApi.length >0) {
-                // console.log('ENTRE API')
+                console.log('ENTRE API')
                 const resultado = searchApi.map(async pk => await axiosUrl(pk.url));
                 // console.log(resultado, 'RESULT');
                 const promise = await Promise.all(resultado);

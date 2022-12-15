@@ -15,14 +15,14 @@ module.exports = (sequelize) => {
       allowNull: false, // no sea null
     },
     life: { // vida
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       // unique: true // un unico valor,
     },
     attack: { // ataque
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     defending: { // defending
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     speed: { // velocidad
       type: DataTypes.INTEGER
@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
     },
     sprites: {
       type: DataTypes.STRING, 
-      allowNull: false
+      // allowNull: false
     }    
   },
   {
