@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Pokemon({ name, sprites, types }) { 
+export default function Pokemon({ id, name, sprites, types }) {
+  console.log(id, 'ID POKE') 
   return (
   <div>
     <div>
       <img src={ sprites } alt="imagenPokemon" />
     </div>
     <div>
-      <Link to='/home/detail'>
+      <Link to={`/home/detail/${id}`}>
         <h3>{ name }</h3>
       </Link>
     </div>

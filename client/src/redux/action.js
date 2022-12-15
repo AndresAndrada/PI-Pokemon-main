@@ -10,7 +10,7 @@ export const CLEAR_POKE = 'CLEAR_POKE';
 export const getApi = () => {
     return async function pedido(dispatch) {
         let aux = await axios.get('http://localhost:3001/pokemons');
-        // console.log(aux, 'aux get')
+        console.log(aux.data, 'aux get')
         return dispatch({
             type: GET_API,
             payload: aux.data
@@ -21,7 +21,7 @@ export const getApi = () => {
 export const findName = (name) => {
     return async function pedido(dispatch) {
         let aux = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
-        console.log(aux, 'aux findName')
+        // console.log(aux, 'aux findName')
         return dispatch({
             type: FIND_NAME,
             payload: aux
@@ -38,7 +38,7 @@ export const clearPoke = () => {
 export const findId = (id) => {
     return async function pedido(dispatch) {
         let aux = await axios.get(`http://localhost:3001/pokemons/${id}`);
-        console.log(typeof aux, aux, 'aux findId')
+        // console.log(aux, 'aux findId')
         return dispatch({
             type: FIND_ID,
             payload: aux.data

@@ -2,7 +2,7 @@ import { CLEAR_POKE, FIND_ID, FIND_NAME, GET_API } from './action'
 
 const initialState = {
     pokemons: [],
-    type: {},
+    type: [],
     pokeDetail: {}
 }
 

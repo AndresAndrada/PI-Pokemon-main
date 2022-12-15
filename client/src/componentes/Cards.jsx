@@ -12,7 +12,9 @@ function Cards() {
     
     const state = useSelector(state => state.pokemons) // propiedad de initialState que esta en reducer => un array 
     // useSelector va cambiar siempre que escuche un cambio en reducer
-    console.log(state, 'state');
+    console.log(state.map(pk => pk.id), 'ID CARDS');
+    console.log(state, 'ID CARDS');
+
 
     return (
         <div>
@@ -21,7 +23,7 @@ function Cards() {
             { state && state.map( p => {
                 return (
                     <Pokemon
-                    key={ p.name}
+                    id={ p.id}
                     sprites={ p.sprites }
                     name={ p.name }
                     types={ p.types }
