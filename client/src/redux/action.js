@@ -24,21 +24,15 @@ export const findName = (name) => {
         // console.log(aux, 'aux findName')
         return dispatch({
             type: FIND_NAME,
-            payload: aux
+            payload: aux.data
         })
     }
 }
 
-// export const clearPoke = () => {
-//     return {
-//         type: CLEAR_POKE
-//     }
-// } 
-
 export const findId = (id) => {
     return async function pedido(dispatch) {
         let aux = await axios.get(`http://localhost:3001/pokemons/${id}`);
-        // console.log(aux, 'aux findId')
+        console.log(typeof aux, aux.data, 'aux findId')
         return dispatch({
             type: FIND_ID,
             payload: aux.data
@@ -48,11 +42,21 @@ export const findId = (id) => {
 
 export const createPoke = (pokemon) => {
     return async function pedido(dispatch) {
-        console.log(typeof pokemon, pokemon, 'aux create');
-        let aux = await axios.post(`http://localhost:3001/pokemons/${pokemon}`);
+        // console.log(typeof pokemon, pokemon, 'aux create');
+        let aux = await axios.post(`http://localhost:3001/pokemons/pokemon`, pokemon);
         return dispatch({
             type: CREATE_POKE,
             payload: aux
         })
     };
 };
+
+export const findType = () => {
+    return async function pedido (dispatch) {
+        let aux = await axios.get('http://localhost:3001/types');
+        return dispatch({
+            type: GET_TYPE,
+            payload: aux.data
+        })
+    }
+}

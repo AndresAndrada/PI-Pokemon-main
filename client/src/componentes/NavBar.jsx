@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Search from "./Search";
+import Type from "./Type";
 
 const NavBar = () => {
   return (
@@ -8,11 +10,8 @@ const NavBar = () => {
           <li><Link to='/home'>Home</Link></li>
           <li><Link to='/home/create'>Create a Pokemon</Link></li>
           <li><Link to='/home/about'>About</Link></li>
-          <form >
-            {/* <label htmlFor="">Search</label> */}
-            <input type="text" name="name" placeholder="Search Pokemon..." />
-            <input type="submit" value='Search' />
-          </form>
+          <Search />
+          <Type />
         </ul>
     </div>
   )

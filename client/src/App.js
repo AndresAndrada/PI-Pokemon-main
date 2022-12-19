@@ -6,6 +6,7 @@ import Inicial from './componentes/Inicial';
 import CreatePoke from './componentes/CreatePoke';
 import Detail from './componentes/DetailsPoke';
 
+
 function App() {
   return (
     <div className="App">
@@ -13,7 +14,6 @@ function App() {
       <Route path='/home' component={  NavBar } />
       {/* <Route path='/home/about' component={About} /> */}
       <Route path='/home' exact component={ Cards } />
-      <Route path='/home/detail' exact component={ Detail } />
       <Route path='/home/detail/:id' component={ Detail } />
       <Route path='/home/create' exact component={ CreatePoke } />
     </div>  
