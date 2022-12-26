@@ -10,7 +10,7 @@ const addPoke = async (req, res, next) => {
             // console.log(typeof pokeDB, pokeDB, 'NAME REPETIDO');
             if (!pokeDB.length) {
                 const { name, life, attack, defending, speed, height, weight, type, sprites } = pokemon
-                let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type, sprites });
+                let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type, sprites, type });
                 // console.log(pokeNew, 'NEW')
                 let  typePoke = await Type.findAll({ where: { name: type } }) // NO FUNCIONA => investigar las sintaxis
                 // console.log(typePoke, 'TYPE');

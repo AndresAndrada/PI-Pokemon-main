@@ -10,10 +10,10 @@ const findId = (obj) => {
         sprites: sprites.front_default,
         types: types[0].type.name,
         height,
-        // stats: stats[2]
         attack: stats[1].base_stat,
         defending: stats[2].base_stat,
-        speed: stats[5].base_stat
+        speed: stats[5].base_stat,
+        types: types[0].type.name
     };
 };
 
@@ -29,19 +29,20 @@ const findPokeId = async (req, res, next) => {
         const search = pokeDB.filter(pk => pk.id === id); 
         if(search.length) {
             if(search) {
-                pokeFindDB = search.map(pk => {
-                    return {
-                        id: pk.id,
-                        name: pk.name,
-                        life: pk.life,
-                        attack: pk.attack,
-                        defending: pk.defending,
-                        speed: pk.speed,
-                        height: pk.height,
-                        weight: pk.weight,
-                        sprites: pk.sprites
-                    };
-                });
+                for (let i=0; i<search.length; i++) {
+                    var pokeFindDB = {
+                        id: search[i].id,
+                        name: search[i].name,
+                        life: search[i].life,
+                        attack: search[i].attack,
+                        defending: search[i].defending,
+                        speed: search[i].speed,
+                        height: search[i].height,
+                        weight: search[i].weight,
+                        sprites: search[i].sprites,
+                        type: search[i].type
+                    }                    
+                }
                 res.json(pokeFindDB);
             } else {
                 res.json({ message: 'Poquemon no existente'})

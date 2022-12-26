@@ -36,7 +36,10 @@ module.exports = (sequelize) => {
     sprites: {
       type: DataTypes.STRING, 
       // allowNull: false
-    }    
+    },   
+    type: {
+      type: DataTypes.STRING,
+    }
   },
   {
     timestamps: false,

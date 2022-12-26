@@ -26,23 +26,27 @@ const getAllApi = async (req, res, next) => {
         // console.log(pedido, 'PEDIDO');
         const pokemon = pedido.data.results;
         const list2 = await axios.get(pedido.data.next);
-        const listCompl = [...pokemon, ...list2.data.results];
+        // console.log(pokeDB, 'POKE DB')
+        const listCompl = [...pokemon, ...list2.data.results ];
         // console.log(listCompl, 'LISTA COMPLE')
         const { name } = req.query;
         if(!name) {
             // res.send('hola')
             const respuesta = listCompl.map(async pk => await axiosUrl(pk.url)) // a c/url se le hace un axios
-            const promise = await Promise.all(respuesta); // espera todas las promesas
+            const pokeDB1 = await Pokemon.findAll()
+            const totalPoke = [ ...pokeDB1, ...respuesta ];
+            // console.log(totalPoke);
+            const promise = await Promise.all(totalPoke); // espera todas las promesas
             // console.log(promise, 'POMISE')
             const resultado = promise.map(pk => {
                 return {
                     id: pk.id,
                     name: pk.name,
                     sprites: pk.sprites,
-                    types: pk.types
-                }
-            })
-            res.send(resultado) 
+                    types: !pk.types ? pk.type : pk.types
+                };
+            });
+            res.send(resultado);
         } else { 
             const pokeBd = await Pokemon.findAll()
             // console.log(pokeBd, 'DB')
