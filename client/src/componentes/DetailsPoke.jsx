@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import style from './DetailType.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { findId } from "../redux/action";
@@ -17,23 +18,27 @@ const Detail = (props) => {
 
   if(state) {
     return (
-      <div>
-        <h1>Detail the Pokemon</h1>
-          <div>
+      <div className={ style.type }>
+        <div className={ style.title }>
+          <h1>Detail Pokemon</h1>
+        </div>
+        <div className={ style.poke }>
+          <div className= { style.typePoke }>
             <img src={state.sprites} alt={state.name} />
             <h3>Name: {state.name}</h3>
-            <h4>Type: {state.types}</h4>
+            <h4>Type: {!state.types ? state.type : state.types}</h4>
             <h4>Height: {state.height}</h4>
             <h4>Attack: {state.attack}</h4>
             <h4>Defending: {state.defending}</h4>
             <h4>Speed: {state.speed}</h4>
           </div>
+        </div>
       </div>
     );
   } else {
     return (
       <div>
-        <h3>LOADING</h3>
+        <h2>LOADING</h2>
       </div>
     )
   }

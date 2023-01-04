@@ -1,0 +1,51 @@
+.name {
+    margin-top: 15px;
+}
+
+.name h1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffcbcb;
+    color: coral;
+    /* min-height: 1vh; */
+    margin-right: 25%;
+    margin-left: 500px;
+    border-radius: 15px;
+    opacity: 0.9;
+}
+
+.poke {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: azure;
+    margin: 100px;
+    margin-left: 25%;
+    margin-right: 30%;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+.poke img {
+    width: 200px;
+}
+
+.loading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffcbcb;
+    /* min-height: 1vh; */
+    margin-left: 500px;
+    margin-right: 25%;
+    padding-right: 10px;
+    border-radius: 15px;
+}
+
+.loading h4 {
+    color: red;     
+}

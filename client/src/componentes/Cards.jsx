@@ -1,55 +1,85 @@
 import React, { useEffect, useState } from "react";
+import style from './Cards.module.css'
+import img from './img/pokemon.png'
 import Pokemon from "./Pokemon";
 import Filtros from "./FiltrosType";
 import { useDispatch, useSelector } from "react-redux";
 import { getApi } from "../redux/action";
+import Type from './Type';
+import ApiDB from "./ApiDB";
 
 function Cards() {
     const [page, setPage] = useState(1);
-    // const [forPage, setForPage] = useState(10)
+    const [forPage] = useState(12)
     // console.log(poke,'STATE POKE')
 
-    const dispatch = useDispatch(); // envia la info al reducer
+    const dispatch = useDispatch(); // en via la info al reducer
     useEffect(() => {    // se ejecuta la accion cuando se monta el componente  
         dispatch(getApi());
     }, [dispatch]);
+    
     const state = useSelector(state => state.pokemons) // propiedad de initialState que esta en reducer => un array 
-    console.log(state.length)
     // useSelector va cambiar siempre que escuche un cambio en reducer
 
     // const maximo = parseInt(state.length / forPage);
     const nextPage = () => {
         setPage(page+1);
-        console.log(page, 'NEXT')
-        // setForPage(forPage + 12)
     }
 
     const prevPage = () => {
         setPage(page-1);
-        console.log(page, 'PAGE')
-        // setForPage(forPage-12)
     }
-   
     return ( 
-        <div>
-            <h2>Home</h2>
-            <h3>Pokemons</h3>
-            <Filtros />
-            <div>
-                <p>Pagina: { page }</p>
+        <div className={ style.fondo }>
+            <div className={ style.cards }>
+                {/* <div className={ style.home }> */}
+                    <h2>Home</h2>
+                {/* </div> */}
+                <div className={ style.filter }>
+                    <Filtros />
+                </div>
+            </div>
+            <div className={ style.imgpPag }>
+            <img className={ style.img } src={img} width='200' height='90' alt="" />
+                <p className={ style.text }>Pagina: { page }</p>
+                <div className={ style.boton }>
                     <button onClick={ prevPage }>Prev</button>
                     <button onClick={ nextPage }>Next</button>
+                </div>
             </div>
-            { state.length ? state.map(p => {
-                return (
-                    <Pokemon
-                    key={ p.id }
-                    id={ p.id }
-                    sprites={ p.sprites }
-                    name={ p.name }
-                    types={ p.types }
-                    />)
-            }) : <div>LOADING</div>}
+            <div className={ style.typePoke}>                              
+                { state.length ? (
+                <div className={ style.type }>
+                    <div>
+                        <h2>ORIGEN:</h2>
+                        <ApiDB />
+                    </div>
+                    <div>
+                        <h2>TYPES</h2>
+                        <Type />
+                    </div>
+                </div>
+                ) : <div></div> }             
+                <div className={ style.poke }>
+                    { state.length ? state.slice((page-1)*forPage, (page-1)*forPage + forPage).map(p => {
+                        return (
+                            <div key={ p.id }>
+                                <Pokemon
+                                key={ p.id }
+                                id={ p.id }
+                                sprites={ p.sprites }
+                                name={ p.name }
+                                types={ p.types.map(pk => {
+                                    return (
+                                        <div key={ pk }>{ pk }</div>
+                                    )
+                                })}
+                                />
+                            </div>)
+                    }) : <div className={ style.loading }><div className={ style.loader }></div></div>}
+                </div>
+            </div>
+
         </div>
     );
 };

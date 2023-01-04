@@ -1,5 +1,17 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  background-image: url('./img/INICIO.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.inicio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -26,7 +38,7 @@
 
 .App-link {
   color: #61dafb;
-}
+} 
 
 @keyframes App-logo-spin {
   from {

@@ -1,0 +1,54 @@
+.poke {
+    color: #dc2f2f;
+    font-family: 'Times New Roman', Times, serif;
+    width: 150px;
+    height: 150px;
+    margin: 10px 10px 50px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    /* padding-left: 80kpx; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6f3c;
+    flex-direction: column;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+
+.link {
+    color: rgb(10, 157, 133);
+    text-decoration: none;
+    transition: 0.4s;
+    text-shadow: 
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black
+}
+
+.link:hover {
+    color: #dc2f2f;
+}
+
+.poke:hover {
+    background-color: #feffdf;
+    font-size: 17px;
+    color: red;
+}
+
+.img {
+    display: flex;
+    border-radius: 20px;
+}
+
+.img1 {
+    transition: 0.5s;
+    border-radius: 100px;
+}
+
+.img1:hover {
+    width: 150px;
+    
+}

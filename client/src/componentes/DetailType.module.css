@@ -1,0 +1,145 @@
+.type {
+    margin-top: 15px;
+}
+
+.title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffcbcb;
+    color: coral;
+    /* min-height: 1vh; */
+    margin-left: 300px;
+    margin-right: 300px;
+    padding-left: 20px;
+    padding-right: 10px;
+    border-radius: 15px;
+}
+
+.poke {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+.typePoke {
+    margin: auto;
+    margin-top: 15px;
+    background-color: #ffcbcb;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px; 
+    opacity: 0.7; 
+    transition: 0.6s;  
+}
+
+.typePoke:hover {
+    opacity: 1;
+    font-size: 17px;
+    color: brown;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+.typePoke img {
+    transition: 0.7s;
+    width: 150px;
+}
+
+.typePoke img:hover {
+    width: 200px;
+}
+
+.loading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffcbcb;
+    color: coral;
+    /* min-height: 1vh; */
+    margin-left: 300px;
+    margin-right: 300px;
+    padding-left: 20px;
+    padding-right: 10px;
+    border-radius: 15px;
+}
+
+.abc {
+    transition: 0.6s;
+    opacity: 0.9;
+}
+
+.abc:hover {
+    opacity: 1;
+    font-size: 17px;
+    color: brown;
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+.abc img {
+    transition: 0.7s;
+    width: 120px
+}
+
+.abc img:hover {
+    width: 200px;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    background-color: #352f44;
+    padding: auto;
+    width: 100vw;
+    height: 100vh;
+    transition: 0.7s;
+}
+
+.loader,
+.loader::before,
+.loader::after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation: animetion 1.5s infinite ease-in-out;
+}
+
+.loader {
+    color: blue;
+    font-size: 13px;
+    position: relative;
+    animation-delay: -0.16s;
+}
+
+.loader::before,
+.loader::after {
+    content: '';
+    position: absolute;
+    top: 0;
+}
+
+.loader::before {
+    left: -3.5em;
+    animation-delay: -0.32s;
+
+}
+
+.loader::after {
+    left: 3.5em;
+}
+
+@keyframes animetion {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 2.5em 0 -1.3em;
+    }
+    40% {
+        box-shadow: 0 2.5em 0 0;
+    }
+}
