@@ -9,11 +9,12 @@ const axiosUrl = async (url) => {
     const respuesta = pokemon.data; // trae la data de la promesa
     // console.log(respuesta, 'FUN AXIOSURL')
     const { sprites, name, types, height, weight, id} = respuesta; // destructurin de esa respuesta
+    // console.log(types, 'TYPE')
     return { 
         id,
         name: name,
         sprites: sprites.front_default,
-        types: types[0].type.name,
+        types: types.map(tp => tp.type.name),
         height: height,
         weight: weight
     } 
@@ -43,7 +44,7 @@ const getAllApi = async (req, res, next) => {
                     id: pk.id,
                     name: pk.name,
                     sprites: pk.sprites,
-                    types: !pk.types ? pk.type : pk.types
+                    types:  !pk.types ? pk.type : pk.types
                 };
             });
             res.send(resultado);
