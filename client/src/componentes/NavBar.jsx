@@ -15,7 +15,7 @@ const NavBar = () => {
       <ul>
         {/* <li><Link to='/home'>Home</Link></li> */}
         <li><Link to='/home/create/poke' className={ style.lista }>Create a Pokemon</Link></li>
-        <li><Link to='/home/about' className={ style.lista }>About</Link></li>
+        <li><Link to='/' className={ style.lista }>Inicial</Link></li>
         <div>
           <Search className={ style.search } />
         </div>

@@ -8,12 +8,12 @@ const findId = (obj) => {
         id,
         name,
         sprites: sprites.front_default,
-        types: types[0].type.name,
+        types: types.map(tp => tp.type.name),
+        // types: types[0].type.name,
         height,
         attack: stats[1].base_stat,
         defending: stats[2].base_stat,
         speed: stats[5].base_stat,
-        types: types[0].type.name
     };
 };
 
@@ -40,7 +40,7 @@ const findPokeId = async (req, res, next) => {
                         height: search[i].height,
                         weight: search[i].weight,
                         sprites: search[i].sprites,
-                        type: search[i].type
+                        types: search[i].type
                     }                    
                 }
                 res.json(pokeFindDB);

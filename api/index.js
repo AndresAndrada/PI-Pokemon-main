@@ -23,7 +23,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => { // force => elimina toda la tabla y crea una nueva || alter: true modifica la tabla
+conn.sync({ force: false }).then(() => { // force => elimina toda la tabla y crea una nueva || alter: true modifica la tabla
   server.listen(3001, async () => {
     const pedido = await axios.get('https://pokeapi.co/api/v2/type'); // trae los tipos de la api apenas levanta el servidor
     // console.log(pedido.data.results, 'PEDIDO')

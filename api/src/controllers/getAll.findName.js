@@ -8,15 +8,18 @@ const axiosUrl = async (url) => {
     const pokemon = await axios(url); 
     const respuesta = pokemon.data; // trae la data de la promesa
     // console.log(respuesta, 'FUN AXIOSURL')
-    const { sprites, name, types, height, weight, id} = respuesta; // destructurin de esa respuesta
-    // console.log(types, 'TYPE')
+    const { sprites, name, types, height, weight, stats, id} = respuesta; // destructurin de esa respuesta
+    // console.log(stats, 'STATS')
     return { 
         id,
         name: name,
         sprites: sprites.front_default,
         types: types.map(tp => tp.type.name),
         height: height,
-        weight: weight
+        weight: weight,
+        attack: stats[1].base_stat,
+        defending: stats[2].base_stat,
+        speed: stats[5].base_stat,
     } 
 }
 
@@ -44,11 +47,17 @@ const getAllApi = async (req, res, next) => {
                     id: pk.id,
                     name: pk.name,
                     sprites: pk.sprites,
-                    types:  !pk.types ? pk.type : pk.types
+                    types:  !pk.types ? pk.type : pk.types,
+                    height: pk.height,
+                    weight: pk.weight,
+                    attack: pk.attack,
+                    defending: pk.defending,
+                    speed: pk.speed
                 };
             });
             res.send(resultado);
         } else { 
+            console.log(name);
             const pokeBd = await Pokemon.findAll()
             // console.log(pokeBd, 'DB')
             const searchApi = listCompl.filter(pk => pk.name.toLowerCase() === name.toLowerCase());
@@ -67,7 +76,8 @@ const getAllApi = async (req, res, next) => {
                             speed: pk.speed,
                             height: pk.height,
                             weight: pk.weight,
-                            sprites: pk.sprites
+                            sprites: pk.sprites,
+                            types: pk.type.map(tp => tp)
                         }
                     })
                     res.send(pokemonBD);

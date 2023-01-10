@@ -6,7 +6,7 @@ import { getApi } from "../redux/action";
 
 const DetailType = () => {
     const { poke } = useParams();
-    console.log(poke, 'POKE')
+    //  console.log(poke, 'POKE')
     const dispatch = useDispatch()
 
     // llamar a la funcion gtePoke para traer todos los pokemons, filtrarlos por tipos para mostrarlos
@@ -19,27 +19,27 @@ const DetailType = () => {
 
     const arr = [];
 
-    const stateMap = state.map(pk => pk.types.forEach(e => {
+    state.map(pk => pk.types.forEach(e => {
         if(e === poke) arr.push(pk);
     }));
 
-    // console.log(arr, 'ARRAY');
-
+    //  console.log(arr, 'ARRAY');
 
 
     return (
-        <div className={ style.type }>
+        
+        <div className={ style.type }>   
             <div className={ style.title }>
-                <h1>DETAIL TYPE</h1>
+                { <h1>DETAIL TYPE</h1>}
             </div>
-            <div className={ style.poke }>
-                {arr.length && arr.map(pk => {
+            <div className={ style.pokeApi }>
+                {arr.length ? arr.map(pk => {
                     // if(pk.types === poke) {
                         return (
-                            <div key={ pk.id } className= { style.typePoke }>
+                            <div key={ pk.id } className= { style.typePokeApi }>
                                 <img src={pk.sprites} alt={pk.name} />
-                                <h3>Name: {pk.name}</h3>
-                                <h4>Type: {pk.types}</h4>
+                                <h4>Name: {pk.name}</h4>
+                                <h5>Type: {pk.types.map(p => <div key={ p }>{ p }</div>)}</h5>
                         {pk.attack && pk.defending && pk.speed && pk.height ? (
                         <div>
                             <h4>Height: {pk.height }</h4>
@@ -56,8 +56,7 @@ const DetailType = () => {
                             </div>
                         )
                     // }
-                    return pk.name
-                })}
+                }) : <div className= { style.title }><h1>NOT FOUND POKEMONS</h1></div>}
 
             </div>
             

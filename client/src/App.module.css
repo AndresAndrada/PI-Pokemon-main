@@ -8,10 +8,11 @@
 
 .inicio {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  /* border-radius: 10%; */
 }
 
 .App-logo {

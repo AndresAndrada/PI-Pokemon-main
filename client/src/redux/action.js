@@ -7,6 +7,10 @@ export const GET_TYPE = 'GET_TYPE';
 export const CREATE_POKE = 'CREATE_POKE';
 export const CLEAR_POKE = 'CLEAR_POKE';
 export const ABC_POKE = 'ABC_POKE';
+export const DELETE_POKE = 'DELETE_POKE';
+export const API_POKE = 'API_POKE';
+export const DELETE_CARDS = 'DELETE_CARDS';
+export const TYPE_FILTER = 'TYPE_FILTER';
 
 export const getApi = () => {
     return async function pedido(dispatch) {
@@ -33,7 +37,7 @@ export const findName = (name) => {
 export const findId = (id) => {
     return async function pedido(dispatch) {
         let aux = await axios.get(`http://localhost:3001/pokemons/${id}`);
-        console.log(typeof aux, aux.data, 'aux findId')
+        // console.log(typeof aux, aux.data, 'aux findId')
         return dispatch({
             type: FIND_ID,
             payload: aux.data
@@ -69,4 +73,31 @@ export const filterPokemons = (payload) => {
       type: ABC_POKE,
       payload,
     };
-  };
+};
+
+export const apiDbFilter = (target) => {
+    // console.log(target, array, 'VRSNVIANCVA')
+    return {
+        type: API_POKE,
+        payload: target,
+    }
+}
+
+export const clearPoke = () => {
+    return {
+        type: DELETE_POKE,
+    }
+};
+
+export const clearApi = () => {
+    return {
+        type: DELETE_CARDS,
+    }
+};
+
+export const typeFilter = (payload) => {
+    return {
+        type: TYPE_FILTER,
+        payload,
+    }
+}

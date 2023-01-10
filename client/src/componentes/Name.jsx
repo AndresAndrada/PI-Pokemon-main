@@ -15,7 +15,7 @@ const Name = (props) => {
     },[dispatch, name])
 
     const state = useSelector(state => state.pokeName)
-    // console.log(state, 'STATENAME')
+    console.log(state, 'STATENAME')
 
     return (
         <div className={ style.name }>
@@ -25,12 +25,12 @@ const Name = (props) => {
                     <div key={ p.id } className={ style.poke }>
                         <img src={ p.sprites } alt={ p.name } />
                         <h3 key={ p.id }>{ p.name }</h3>
-                        <h4>Type: { p.types }</h4>
+                        <h4>Type: { p.types.map(tp => <div key={ tp }>{ tp }</div>) }</h4>
                         <h4>Height: { p.height }</h4>
                         <h4>Weight: { p.weight }</h4>
                     </div>
                 )
-            }) : <div className={ style.loading }><h4>LOADING</h4></div>}
+            }) : <div className={ style.loading }><h4>NOT FOUND POKEMONS</h4></div>}
         </div>
         // {state.length ? state.}
         // <div>

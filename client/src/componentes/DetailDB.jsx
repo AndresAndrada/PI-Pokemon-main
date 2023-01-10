@@ -20,13 +20,13 @@ const DetailDB = () => {
             <div className={ style.title }>
                 <h1>POKEMONS IN THE DATA BASE</h1>
             </div>
-            <div className={ style.poke }>
+            <div className={ style.pokeApi }>
             {api ? api.map(pk => {
                 return (
-                    <div key={ pk.id } className= { style.typePoke }>
+                    <div key={ pk.id } className= { style.typePokeApi }>
                         <img src={ pk.sprites } alt={ pk.name } />
                         <h3>{ pk.name }</h3>
-                        <h4>Type: { pk.types }</h4>
+                        <h4>Type: { pk.types.map(tp => <div key={ tp }>{ tp }</div>) }</h4>
                     </div>
                 )
             }) : <div className={ style.loading }><div className={ style.loader }></div></div>}

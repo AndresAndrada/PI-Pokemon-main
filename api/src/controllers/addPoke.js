@@ -12,7 +12,7 @@ const addPoke = async (req, res, next) => {
                 const { name, life, attack, defending, speed, height, weight, type, sprites } = pokemon
                 // console.log(type, 'TYPE BD')
                 let pokeNew = await Pokemon.create({ name, life, attack, defending, speed, height, weight, type, sprites });
-                console.log(pokeNew.type, 'NEW')
+                // console.log(pokeNew.type, 'NEW')
                 // const typePoke = await type.map(tp => Type.findAll({ where: { name: tp } }))
                 let  typePoke = await Type.findAll({ where: { name: type } }) // NO FUNCIONA => investigar las sintaxis
                 // const promise = Promise.all(typePoke)
@@ -27,7 +27,7 @@ const addPoke = async (req, res, next) => {
         }; 
         // res.json({ message: 'POST' })
     } catch (error) {
-        console.log('ERROOOOR POST');
+        // console.log('ERROOOOR POST');
         next(error);
     };
 };

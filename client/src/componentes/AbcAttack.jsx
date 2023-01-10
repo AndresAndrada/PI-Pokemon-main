@@ -11,7 +11,7 @@ const AbcAttack = () => {
 
     const dispatch = useDispatch();
 
-    const pokemons = useSelector(state => state.pokeFilters);
+    const pokemons = useSelector(state => state.pokemons);
     // console.log(pokemons, 'POKE ABC STATE');
 
 
@@ -25,14 +25,14 @@ const AbcAttack = () => {
 
     useEffect(() => {
         dispatch(getApi());
-        setPoke(pokemons)
+        setPoke(pokemons);
     }, [dispatch, poke]);
 
     return (
         <div className={ style.type }>
             <div className={ style.title }>
-                <select onChange={ onChange }>
-                    <option value="todo"disabled={true} >Filtros</option>
+                <select className={ style.filtros } onChange={ onChange }>
+                    <option value="todo" >Filters</option>
                     <option value="a-z">A-Z</option>
                     <option value="z-a">Z-A</option>
                     <option value="attack1">Up Attack</option>

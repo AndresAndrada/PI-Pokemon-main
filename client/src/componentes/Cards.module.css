@@ -1,5 +1,5 @@
 .fondo {
-    background-color: #ff6f3c;
+    background-color: red;
 }
 
 .cards {
@@ -52,13 +52,25 @@
 }
 
 .poke { 
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
+    
+     */
+    margin-bottom: 100px;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    /* justify-content: center; */
     background-color: #352f44;
+    /* height: 100vh; */
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: auto auto auto auto;
+    grid-auto-rows: auto;
+    min-height: 100vh;
     border-radius: 20px;
+}
+
+.div {
+    grid-template-columns: auto auto auto auto;
 }
 
 .imgpPag {
@@ -96,8 +108,8 @@
     background-color: #bbe4e9;
     opacity: 0.6;
     border-radius: 20px;
-    height: 920px;
-    padding: 50px;
+    height: 950px;
+    padding: 25px;
     margin: 10px;
     transition: 1s;
 }
@@ -105,7 +117,7 @@
 .type:hover {
     opacity: 1;
     font-size: 17px;
-    height: 1000px;
+    height: 1050px;
 }
 
 .loading {
@@ -162,4 +174,18 @@
     40% {
         box-shadow: 0 2.5em 0 0;
     }
+}
+
+.boton button {
+    border-radius: 10%;
+    text-decoration: none;
+    transition: 0.5s;
+    padding: 5px 20px;
+    background-color: white;
+}
+
+.boton button:hover {
+    background-color: aqua;
+    box-shadow: 0 0 10px rgb(95, 100, 245), 0 0 40px rgb(45, 45, 225), 0 0 80px blue;
+    transition: 0.6;
 }
